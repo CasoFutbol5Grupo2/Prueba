@@ -22,7 +22,7 @@
         </div>
         
     <center>
-        
+        <!-->Hola cómo estás<-->
         <table cellpadding="15">
             <tr>
                 <td>

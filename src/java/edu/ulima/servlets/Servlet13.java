@@ -18,7 +18,7 @@ import javax.xml.ws.WebServiceRef;
 @WebServlet(name = "Servlet13", urlPatterns = {"/s13"})
 public class Servlet13 extends HttpServlet {
     @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/localhost_8080/CasoFutbol-SMSService/FutbolService.wsdl")
-    private edu.ulima.ws.FutbolService_Service service;
+    //private edu.ulima.ws.FutbolService_Service service;
         
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -41,15 +41,15 @@ public class Servlet13 extends HttpServlet {
            
          a= g.cancelarPartido(r);
          msj = "Partido Cancelado";
-               notificacion(r.getId());
+               //notificacion(r.getId());
            }else{
                
            a = g.confirmarPartido(r);
            if(a!=false){g.rellenar(r);
            r=g.verPartido(r.getId());
            msj = "Partido Confirmado";
-               confirmado(r.getId());
-               rechazo(r.getId());
+               //confirmado(r.getId());
+               //rechazo(r.getId());
            }
            }
             if (a ==false ){
@@ -106,26 +106,26 @@ public class Servlet13 extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    private String notificacion(int id) {
-        // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.
-        // If the calling of port operations may lead to race condition some synchronization is required.
-        edu.ulima.ws.FutbolService port = service.getFutbolServicePort();
-        return port.notificacion(id);
-    }
-
-    private String confirmado(int id) {
-        // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.
-        // If the calling of port operations may lead to race condition some synchronization is required.
-        edu.ulima.ws.FutbolService port = service.getFutbolServicePort();
-        return port.confirmado(id);
-    }
-
-    private String rechazo(int id) {
-        // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.
-        // If the calling of port operations may lead to race condition some synchronization is required.
-        edu.ulima.ws.FutbolService port = service.getFutbolServicePort();
-        return port.rechazo(id);
-    }
-
-
+//    private String notificacion(int id) {
+//        // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.
+//        // If the calling of port operations may lead to race condition some synchronization is required.
+//        edu.ulima.ws.FutbolService port = service.getFutbolServicePort();
+//        return port.notificacion(id);
+//    }
+//
+//    private String confirmado(int id) {
+//        // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.
+//        // If the calling of port operations may lead to race condition some synchronization is required.
+//        edu.ulima.ws.FutbolService port = service.getFutbolServicePort();
+//        return port.confirmado(id);
+//    }
+//
+//    private String rechazo(int id) {
+//        // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.
+//        // If the calling of port operations may lead to race condition some synchronization is required.
+//        edu.ulima.ws.FutbolService port = service.getFutbolServicePort();
+//        return port.rechazo(id);
+//    }
+//
+//
 }
