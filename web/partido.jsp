@@ -14,21 +14,23 @@
     </head>
     
     <body> 
-        
-        <a href="home.jsp">
-            <img src="img/logoFutbol.jpg" />
-        </a>
-        
+              
         <br><br>            
             
                 <div class="row">
                     <div class="small-12 columns">
                         <center class="enzo"><h1><font face="Showcard Gothic">Información del Partido  ${reserva.id}</font></h1></center>
+                
                     </div>
+                    
+                        
+                    
                 </div>
+                
+                
                 <br> 
                 <div class="row">
-                    <div class="small-2 columns"></div>
+                    <div class="small-2 columns blanco"></div>
                     <div class="small-4 columns blanco">
                         <p align="right"><b><font size=+1>Organizado por:</font></b></p>
                     </div>

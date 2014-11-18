@@ -16,70 +16,113 @@
     </head>
     <body>
     
-        <a href="home.jsp">
-            <img src="img/logoFutbol.jpg" />
-        </a>
+        <div class="row" style="background: rgba(50,50,50,0.5);
+    border-radius: 8px;">
+            <div class="medium-2 columns">
+                <a href="home.jsp">
+                    <img src="img/logoFutbol.jpg" />
+                </a>
+            </div>            
+            <div class="medium-2 columns"><br>
+                <a href="mispartidos.jsp">Mis Partidos</a></div>
+
+            <div class="medium-2 columns"><br>
+                <a>Partidos Disponibles</a></div>    
+
+            <div class="medium-2 columns"><br>
+                <a>Reservar cancha</a></div>
+
+            <div class="medium-2 columns"><br>
+                <a>Mi Perfil</a></div>
+            <div class="medium-2 columns"><br>
+                <a>Logout</a></div>
+                        
+        </div>
         
         <br><br>
-    <center>
-        
-        <div class="small-12 columns">
-                <div class="org">
-                <h3>Nombre de Jugador: ${actual.jugador.nombre}&nbsp;${actual.jugador.apellido}</h3>
+    <div class="row">
+                    <div class="small-12 columns">
+                        <center class="enzo"><h1><font face="Showcard Gothic">Información del Partido  ${reserva.id}</font></h1></center>
+                    </div>
                 </div>
+                <br>
+                <div class="row">
+                    <div class="small-2 columns"></div>
+                    <div class="small-4 columns blanco">
+                        <p align="right"><b><font size=+1>Fecha:</font></b></p>
+                    </div>
+                    <div class="small-4 columns blanco">
+                        <p class="left">${reserva.fecha}&nbsp;${reserva.hora}</p>
+                    </div>
+                    <div class="small-2 columns"></div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="small-2 columns"></div>
+                    <div class="small-4 columns blanco">
+                        <p align="right"><b><font size=+1>Cancha:</font></b></p>
+                    </div>
+                    <div class="small-4 columns blanco">
+                        <p class="left">${reserva.cancha}</p>
+                    </div>
+                    <div class="small-2 columns"></div>
+                </div>
+                     
+                    
+                         
+            <div class="row">
+                    <div class="small-12 columns">
+                        <center class="blanco"><h3><font face="Showcard Gothic">Alineación</font></h3></center>
+                    </div>
+                </div>
+                <br>
+            <div class="row">
+                <center>
+                <table>
+                    <tr>
+                        <td>Nombre</td>
+                        <td>Apellido</td>
+                        <td>Email</td>
+                        <td>Teléfono</td> 
+                    </tr>
+                    <c:forEach var="i" items="${detalleReserva.jugGarantizados}">
+                        <tr>
+                            <td>${i.nombre}</td>
+                            <td>${i.apellido}</td> 
+                            <td>${i.email}</td>
+                            <td>${i.telefono}</td> 
+                        </tr>            
+                    </c:forEach>
+                </table>
+                    
             </div>
-        <div class="row">
-            <table>
-                <tr>
-                    <td>
-                        IdReserva
-                    </td>
-                    <td>
-                        Organizador
-                    </td>
-                    <td>
-                        Fecha
-                    </td>
-                    <td>
-                        Hora
-                    </td>
-                    <td>
-                        Cancha
-                    </td>
-                </tr>
-                <form action="s08" method="POST">
-                    <c:if test="${PartidosBuscados!=null}">
-                        <c:forEach var="i" items="${PartidosBuscados}">
-                            <tr>
-                            <td>
-                                <c:url var="url" value="http://localhost:8080/CasoFutbol5Grupo2/s09" >
-                                <c:param name="idReserva" value="${i.id}" />
-                                </c:url>
-                                <a href="s09?idReserva=${i.id}"><c:out value="${i.id}"/></a>
-                            </td>
-                            <td>
-                                <c:out value="${i.organizador.nombre}"/>
-                            </td>
-                            <td>
-                                <c:out value="${i.fecha}"/>
-                            </td>
-                            <td>
-                                <c:out value="${i.hora}"/>
-                            </td>
-                            <td>
-                                <c:out value="${i.cancha}"/>
-                            </td>
-                            </tr>
-                        </c:forEach>
-                    </c:if>
-                </form>
-            </table>
-            
-            
-        
-        </div>
-     
-    </center>
+               
+                <div class="row">
+                    <div class="small-12 columns">
+                        <center class="blanco01"><h3><font face="Showcard Gothic">Jugadores Probables</font></h3></center>
+                    </div>
+                </div>
+                <br>
+            <div class="row">
+                <center>
+                <table>
+                    <tr>
+                        <td>Nombre</td>
+                        <td>Apellido</td>
+                        <td>Email</td>
+                        <td>Teléfono</td> 
+                    </tr>
+                    <c:forEach var="i" items="${detalleReserva.jugProbables}">
+                        <tr>
+                            <td>${i.nombre}</td>
+                            <td>${i.apellido}</td> 
+                            <td>${i.email}</td>
+                            <td>${i.telefono}</td> 
+                        </tr>            
+                    </c:forEach>
+                </table>
+                </center>
+            </div>
     
     </body>
     <c:if test="${msjInscripcion!=null}">

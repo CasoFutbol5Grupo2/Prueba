@@ -15,9 +15,28 @@
     
     <body> 
         
-        <a href="home.jsp">
-            <img src="img/logoFutbol.jpg" />
-        </a>
+        <div class="row" style="background: rgba(50,50,50,0.5);
+    border-radius: 8px;">
+            <div class="medium-2 columns">
+                <a href="home.jsp">
+                    <img src="img/logoFutbol.jpg" />
+                </a>
+            </div>            
+            <div class="medium-2 columns"><br>
+                <a href="mispartidos.jsp">Mis Partidos</a></div>
+
+            <div class="medium-2 columns"><br>
+                <a>Partidos Disponibles</a></div>    
+
+            <div class="medium-2 columns"><br>
+                <a>Reservar cancha</a></div>
+
+            <div class="medium-2 columns"><br>
+                <a>Mi Perfil</a></div>
+            <div class="medium-2 columns"><br>
+                <a>Logout</a></div>
+                        
+        </div>
         
         <br><br>            
             
