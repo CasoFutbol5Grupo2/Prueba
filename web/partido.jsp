@@ -3,7 +3,7 @@
 
 <html>    
     <head>
-        <c:set var="reserva" scope="session" value="${sessionScope.detalleReserva}"/>
+        <c:set var="partido" scope="session" value="${sessionScope.detallePartido}"/>
         <c:set var="msjInscripcion" scope="session" value="${sessionScope.msjInscripcion}"/>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,6 +11,17 @@
         <link rel="stylesheet" href="css/foundation.css" />
         <link rel="stylesheet" href="css/main.css" />
         <title>.:Partido:.</title>
+        
+        
+        <script type="text/javascript">
+            
+            function guardar(){               
+                //quiero recorrer la lista de partidos y para cada uno hacer esto, pero no sé cómo :C
+                var eq = document.form.equipo[document.form.equipo.selectedIndex].value;                
+                $.get("servletGuardar",{equipo:eq})
+            }
+            
+        </script>
     </head>
     
     <body> 
@@ -30,32 +41,10 @@
                 <div class="row">
                     <div class="small-2 columns"></div>
                     <div class="small-4 columns blanco">
-                        <p align="right"><b><font size=+1>Organizado por:</font></b></p>
-                    </div>
-                    <div class="small-4 columns blanco">
-                        <p class="left">${reserva.organizador.nombre}&nbsp;${reserva.organizador.apellido}</p>
-                    </div>
-                    <div class="small-2 columns"></div>
-                </div>
-                <br>
-                <div class="row">
-                    <div class="small-2 columns"></div>
-                    <div class="small-4 columns blanco">
-                        <p align="right"><b><font size=+1>Hora:</font></b></p>
-                    </div>
-                    <div class="small-4 columns blanco">
-                        <p class="left">${reserva.hora}</p>
-                    </div>
-                    <div class="small-2 columns"></div>
-                </div>
-                <br>
-                <div class="row">
-                    <div class="small-2 columns"></div>
-                    <div class="small-4 columns blanco">
                         <p align="right"><b><font size=+1>Fecha:</font></b></p>
                     </div>
                     <div class="small-4 columns blanco">
-                        <p class="left">${reserva.fecha}</p>
+                        <p class="left">${partido.fecha}&nbsp;${partido.hora}</p>
                     </div>
                     <div class="small-2 columns"></div>
                 </div>
@@ -66,77 +55,50 @@
                         <p align="right"><b><font size=+1>Cancha:</font></b></p>
                     </div>
                     <div class="small-4 columns blanco">
-                        <p class="left">${reserva.cancha}</p>
+                        <p class="left">${partido.cancha}</p>
                     </div>
                     <div class="small-2 columns"></div>
-                </div>
-                    <br>
-                    <div class="row">
-                        <div class="small-2 columns"></div>
-                        <div class="small-4 columns blanco">
-                            <p align="right"><b><font size=+1>¿Partido lleno?:</font></b></p>
-                        </div>
-                        <div class="small-4 columns blanco">
-                            <p class="left">${reserva.lleno}</p>
-                        </div>
-                        <div class="small-2 columns"></div>
-                    </div>  
-                    
+                </div>                   
                          
             <div class="row">
                     <div class="small-12 columns">
-                        <center class="blanco"><h3><font face="Showcard Gothic">Jugadores Garantizados</font></h3></center>
+                        <center class="blanco"><h3><font face="Showcard Gothic">Alineación</font></h3></center>
                     </div>
                 </div>
                 <br>
             <div class="row">
                 <center>
-                <table>
-                    <tr>
-                        <td>Nombre</td>
-                        <td>Apellido</td>
-                        <td>Email</td>
-                        <td>Teléfono</td> 
-                    </tr>
-                    <c:forEach var="i" items="${detalleReserva.jugGarantizados}">
-                        <tr>
-                            <td>${i.nombre}</td>
-                            <td>${i.apellido}</td> 
-                            <td>${i.email}</td>
-                            <td>${i.telefono}</td> 
-                        </tr>            
-                    </c:forEach>
-                </table>
-                    
+                    <form action="servletIniciar" method="POST" id="form">
+                        <table>
+                            <tr>
+                                <td>Nombre</td>
+                                <td>Coeficiente de Partidos Ganados</td>
+                                <td>Equipo</td> 
+                            </tr>
+                            <c:forEach var="i" items="${partido.jugadores}">
+                                <tr>
+                                    <td>${i.nombre}&nbsp;${i.apellido}</td>
+                                    <td></td> 
+                                    <td>
+                                        <select name="equipo">
+                                            <option value="1">Equipo 1</option>
+                                            <option value="2">Equipo 2</option>
+                                        </select> 
+                                    </td>
+                                </tr>            
+                            </c:forEach>
+                        </table>
+                        <br><br>
+                        <div class="row"> 
+                            <center>
+                                <div class="small-12 columns"><button onclick="guardar()">Guardar</button>&nbsp;&nbsp;
+                                    <button type="submit">Iniciar</button>
+                                </div></center>
+                        </div>
+                        </form>
+                </center>      
             </div>
-               
-                <div class="row">
-                    <div class="small-12 columns">
-                        <center class="blanco"><h3><font face="Showcard Gothic">Jugadores Probables</font></h3></center>
-                    </div>
-                </div>
-                <br>
-            <div class="row">
-                <center>
-                <table>
-                    <tr>
-                        <td>Nombre</td>
-                        <td>Apellido</td>
-                        <td>Email</td>
-                        <td>Teléfono</td> 
-                    </tr>
-                    <c:forEach var="i" items="${detalleReserva.jugProbables}">
-                        <tr>
-                            <td>${i.nombre}</td>
-                            <td>${i.apellido}</td> 
-                            <td>${i.email}</td>
-                            <td>${i.telefono}</td> 
-                        </tr>            
-                    </c:forEach>
-                </table>
-                </center>
-            </div>
-                            
+                          
     <br>
     
     
