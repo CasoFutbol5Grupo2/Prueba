@@ -12,13 +12,24 @@
         <link rel="stylesheet" href="css/main.css" />
         <title>.:Partido:.</title>
         
+        <jsp:useBean id="Partido" class="ulima.edu.clases.Partido"/>  
+        <jsp:useBean id="Jugador" class="ulima.edu.clases.Jugador"/>
+        
+        <%
+            Partido p = (Partido)session.getAttribute("partido"); 
+            List<Jugador> jugadores = p.getJugadores();
+            System.out.println("p"+p);
+        %>
         
         <script type="text/javascript">
             
-            function guardar(){               
-                //quiero recorrer la lista de partidos y para cada uno hacer esto, pero no sé cómo :C
-                var eq = document.form.equipo[document.form.equipo.selectedIndex].value;                
-                $.get("servletGuardar",{equipo:eq})
+            function guardar(){      
+                var listaJ = '<%=jugadores%>';
+                for(int i=0; i<listaJ.size(); i++){
+                    String e = "equipo" + i;
+                    var eq = document.form.e[document.form.equipo.selectedIndex].value; 
+                    $.get("servletGuardar",{equipo:eq});
+                }
             }
             
         </script>
@@ -82,7 +93,7 @@
                                     <td>${i.nombre}&nbsp;${i.apellido}</td>
                                     <td></td> 
                                     <td>
-                                        <select name="equipo">
+                                        <select name="equipo${i}">
                                             <option value="1">Equipo 1</option>
                                             <option value="2">Equipo 2</option>
                                         </select> 
