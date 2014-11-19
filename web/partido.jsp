@@ -26,8 +26,7 @@
             function guardar(){      
                 var listaJ = '<%=jugadores%>';
                 for(int i=0; i<listaJ.size(); i++){
-                    String e = "equipo" + i;
-                    var eq = document.form.e[document.form.e.selectedIndex].value; 
+                    var eq = document.form.i[document.form.i.selectedIndex].value; 
                     $.get("servletGuardar",{equipo:eq});
                 }
             }
@@ -93,7 +92,7 @@
                                     <td>${i.nombre}&nbsp;${i.apellido}</td>
                                     <td></td> 
                                     <td>
-                                        <select name="equipo${i}">
+                                        <select name="${i}">
                                             <option value="1">Equipo 1</option>
                                             <option value="2">Equipo 2</option>
                                         </select> 
