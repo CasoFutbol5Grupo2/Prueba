@@ -27,7 +27,7 @@
                 var listaJ = '<%=jugadores%>';
                 for(int i=0; i<listaJ.size(); i++){
                     String e = "equipo" + i;
-                    var eq = document.form.e[document.form.equipo.selectedIndex].value; 
+                    var eq = document.form.e[document.form.e.selectedIndex].value; 
                     $.get("servletGuardar",{equipo:eq});
                 }
             }
